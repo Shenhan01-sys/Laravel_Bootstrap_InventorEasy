@@ -1,9 +1,10 @@
 @extends('layout.main')
 @section('title', 'Master Data')
 @section('content')
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.0/css/dataTables.dataTables.css">
 <div class="container mt-4">
     <h5>Master Data</h5>
-    <table class="table table-bordered">
+    <table class="table table-bordered" id="example">
         <thead class="thead-dark">
             <tr>
                 <th>#</th>
@@ -34,4 +35,11 @@
         </tbody>
     </table>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://cdn.datatables.net/2.3.0/js/dataTables.js"></script>
+
+<script>
+    new DataTable('#example');
+</script>
 @endsection
