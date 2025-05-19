@@ -16,12 +16,14 @@ class ItemFactory extends Factory
      */
     public function definition(): array
     {
+        $faker = \Faker\Factory::create('id_ID');
         return [
-            'name_Item' => $this->faker->word(),
-            'id_Category' => $this->faker->numberBetween(1, 2),
-            'description' => $this->faker->sentence(),
-            'quantity' => $this->faker->numberBetween(1, 10),
-            'available' => $this->faker->boolean(),
+            'name_Item' => $faker->word(),
+            'id_Category' => $faker->numberBetween(1, 2),
+            'description' => $faker->sentence(),
+            'quantity' => $faker->numberBetween(1, 10),
+            'available' => $faker->boolean(),
+            'link' => "",
             'created_at' => now(),
             'updated_at' => now(),
         ];

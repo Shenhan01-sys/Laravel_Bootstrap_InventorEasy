@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Item;
+use Illuminate\Support\Facades\Schema;
 
 class NavController extends Controller
 {
@@ -29,5 +31,12 @@ class NavController extends Controller
     public function welcome()
     {
         return view('welcome');
+    }
+
+    public function listOfItems()
+    {
+        $items = Item::all();
+        $columns = Schema::getColumnListing('items');
+        return view('listOfItems', compact('items', 'columns'));
     }
 }

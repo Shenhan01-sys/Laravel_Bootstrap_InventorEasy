@@ -15,6 +15,7 @@ class Item extends Model
         'description',
         'quantity',
         'available',
+        'link',
     ];
     
     protected $table = 'items'; // pastikan sesuai dengan nama tabel di database

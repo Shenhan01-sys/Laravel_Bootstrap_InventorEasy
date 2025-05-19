@@ -3,36 +3,24 @@
 @section('content')
     <link rel="stylesheet" href="https://cdn.datatables.net/2.3.0/css/dataTables.dataTables.css">
 <div class="container mt-4">
-    <h5>Master Data</h5>
+    <h1 style="text-align: center;">LIST OF ITEMS</h1>
     <table class="table table-bordered" id="example">
         <thead class="thead-dark">
             <tr>
-                <th>#</th>
-                <th>Title</th>
-                <th>Language</th>
-                <th>Level</th>
+                @foreach ($columns as $Columns)
+                  <th scope="col">{{ $Columns }}</th>  
+                @endforeach
             </tr>
         </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td>Pemrograman berbasis web</td>
-                <td>php, html, css, js</td>
-                <td>difficult</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Restful API</td>
-                <td>C# native</td>
-                <td>hard</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Data warehouse</td>
-                <td>Query SQL</td>
-                <td>advance</td>
-            </tr>
-        </tbody>
+            <tbody>
+                @foreach ($items as $row)
+                    <tr>
+                        @foreach ($columns as $column)
+                            <td>{{ $row[$column] }}</td>
+                        @endforeach
+                    </tr>
+                @endforeach
+            </tbody>
     </table>
 </div>
 

@@ -1,6 +1,4 @@
 <?php
-
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NavController;
 use App\Http\Controllers\itemController;
 
@@ -19,11 +17,8 @@ use App\Http\Controllers\itemController;
   //  return view('welcome');
 //});
 
-
 Route::get('/', [NavController::class, 'home']);
 Route::get('/master_data', [itemController::class, 'index']);
 Route::get('/about', [NavController::class, 'about']);
 Route::get('/faq', [NavController::class, 'faq']);
 Route::get('/welcome', [NavController::class, 'welcome']);
-Route::get('/listOfItems', [itemController::class, 'index']);
-
