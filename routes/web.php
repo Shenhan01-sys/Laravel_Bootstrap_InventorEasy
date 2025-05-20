@@ -26,4 +26,4 @@ Route::get('/about', [NavController::class, 'about']);
 Route::get('/faq', [NavController::class, 'faq']);
 Route::get('/welcome', [NavController::class, 'welcome']);
 Route::get('/listOfItems', [itemController::class, 'index']);
-
+Route::get('/insertItems', [NavController::class, 'insertItems'])->name('insert_Item');

@@ -15,7 +15,7 @@
     <div class='container-fluid'>
         <!--Baris 1-->
         <div class="row">
-            <div class="col-md-12 py-3" style="background-color: #914660;">
+            <div class="col-md-12 py-3" style="background-color: #92a8e9;">
                 <div class="dropdown float-right">
                     <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" 
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

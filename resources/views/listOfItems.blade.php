@@ -114,12 +114,20 @@
               $name = $row['name_Item'] ?? '';
               $title = $row['title'] ?? '';
               $description = $row['description'] ?? '';
+              $quantity = $row['quantity'] ?? '';
           @endphp
           <div class="card-horizontal mt-5" id="itemcard">
               <img src="https://picsum.photos/400/200?  random={{ $loop->index }}" alt="{{ $name }}" class="card-img-left" />
-              <div class="card-body">
+              <div class="card-body"> 
                   <h4 class="card-title mb-3">{{ $name }}</h4>
                   <p class="card-text mb-4">{{ $description }}</p>
+                  @if($quantity > 1)
+                    <p class="card-text mb-3 bg-success rounded p-1" style="display:inline-block; font-weight:bold; align-self: flex-start;">Jumlah: {{ $quantity }}</p>
+                  @elseif($quantity == 1)
+                    <p class="card-text mb-3 bg-warning rounded p-1" style="display:inline-block; font-weight:bold; align-self: flex-start;">Jumlah: {{ $quantity }}</p>
+                  @elseif ($quantity == 0)
+                    <p class="card-text mb-3 bg-danger rounded p-1" style="display:inline-block; font-weight:bold; align-self: flex-start;">Jumlah: {{ $quantity }}</p>
+                  @endif
                   <a href="#" class="btn btn-custom align-self-start">Pelajari Lebih</a>
               </div>
           </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Item;
+use App\Models\Category;
 use Illuminate\Support\Facades\Schema;
 
 class NavController extends Controller
@@ -38,5 +39,11 @@ class NavController extends Controller
         $items = Item::all();
         $columns = Schema::getColumnListing('items');
         return view('listOfItems', compact('items', 'columns'));
+    }
+
+    public function insertItems()
+    {
+        $categories = Category::all();
+        return view('insertItems', compact('categories'));
     }
 }

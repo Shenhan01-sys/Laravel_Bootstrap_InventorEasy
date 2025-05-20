@@ -16,7 +16,7 @@ class itemController extends Controller
         // Validasi limit
         if (!is_numeric($limit) || $limit <= 0) 
         {
-            $limit = 10; // Set default limit if invalid
+            $limit = 5; // Set default limit if invalid
         }
 
         // Mengambil data dengan limit
@@ -25,6 +25,27 @@ class itemController extends Controller
 
         // Mengirim data ke view
         return view('listOfItems', compact('items', 'columns', 'limit'));
+    }
+
+    public function insertItems(Request $request)
+    {
+        $request->validate([
+            'name_Item' => 'required|string|max:255',
+            'description' => 'required|string',
+            'quantity' => 'required|integer|min:1',
+            'available' => 'required|string|',
+            'link' => 'nullable|url',
+        ]);
+        // Simpan data ke model
+        $item = new Item();
+        $item->name = $request->name_Item;
+        $item->description = $request->description;
+        $item->quantity = $request->quantity;
+        $item->available = $request->available;
+        $item->link = $request->link;
+        $item->save();
+        // Redireksi atau kirim pesan sukses
+        return redirect()->back()->with('success', 'Item berhasil disimpan!');
     }
 
     // Removed showItems method as index now handles limit
