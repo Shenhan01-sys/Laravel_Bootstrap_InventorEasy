@@ -55,7 +55,18 @@
 </style>
 <div class="parent mt-4">
     <div class="div1 mt-2 ml-5" id="div1">
-        <img id="previewImg" src="" alt="Image Preview" style="max-width: 100%; max-height: 100%; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+        <img id="previewImg" src="{{ asset('images/upload_icon.png') }}"
+            style="
+                max-width: 100%; 
+                max-height: 100%; 
+                border-radius: 10px; 
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                padding: 10px;
+                left: 12%;
+                top: 9%;
+                position: relative;">
     </div>
     <script>
         function previewImage(input) {
@@ -64,13 +75,16 @@
             if (imageUrl) {
                 previewImg.src = imageUrl;
                 previewImg.style.display = 'block';
+                previewImg.style.left = '17%';
+                previewImg.style.top = '28%';
             } else {
                 previewImg.style.display = 'none';
             }
         }
     </script>
     <div class="div2 rounded">
-            <form method="GET" action="{{ route('insert_Item') }}">
+            <form method="POST" action="{{ route('insert_Item') }}">
+                @csrf
                 <fieldset class="border border-primary rounded" style="font-size: 20px;">
                     <legend>New Item</legend>
                     <label for="name_Item">Item name:</label>
@@ -85,7 +99,7 @@
                 <fieldset class="border border-primary rounded" style="font-size: 20px;">
                     <legend>Choose Category</legend>
                     <label for="category">Category:</label>
-                    <select id="id_Category" name="category" required>
+                    <select id="id_Category" name="id_Category" required>
                         @foreach($categories as $category)
                             <option value="{{ $category->id_Category }}">{{ $category->name_category }}</option>
                         @endforeach
@@ -94,7 +108,7 @@
                 <fieldset class="border border-primary rounded" style="font-size: 20px;">
                     <legend>Availabel Now?</legend>
                     <label for="available">Available:</label>
-                    <select id="available" name="Available" required>
+                    <select id="available" name="available" required>
                         <option value="1">Yes</option>
                         <option value="0">No</option>
                     </select>
@@ -104,17 +118,17 @@
             </form>
 
             @if(session('success'))
-                <div class="alert alert-success mt-4">
+                <div class="alert alert-success mt-4" style="font-size: 20px; display: flex; align-items: center;">
                     {{ session('success') }}
                 </div>
             @endif
             @if(session('error'))
-                <div class="alert alert-danger mt-4">
+                <div class="alert alert-danger mt-4" style="font-size: 20px; display: flex; align-items: center;">
                     {{ session('error') }}
                 </div>
             @endif
             @if($errors->any())
-                <div class="alert alert-danger mt-4">
+                <div class="alert alert-danger mt-4" style="font-size: 20px; display: flex; align-items: center;">
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>

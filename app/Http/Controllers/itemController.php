@@ -27,21 +27,34 @@ class itemController extends Controller
         return view('listOfItems', compact('items', 'columns', 'limit'));
     }
 
+    public function index_master_data()
+    {
+        // Mengambil data dengan limit
+        $items = Item::all();
+        $columns = Schema::getColumnListing('items');
+
+        // Mengirim data ke view
+        return view('master_data', compact('items', 'columns'));
+    }
+
     public function insertItems(Request $request)
     {
+        //dd($request->all());
         $request->validate([
             'name_Item' => 'required|string|max:255',
             'description' => 'required|string',
             'quantity' => 'required|integer|min:1',
-            'available' => 'required|string|',
+            'available' => 'required|string',
+            'id_Category' => 'required|integer|exists:categories,id_Category',
             'link' => 'nullable|url',
         ]);
         // Simpan data ke model
         $item = new Item();
-        $item->name = $request->name_Item;
+        $item->name_Item = $request->name_Item;
         $item->description = $request->description;
         $item->quantity = $request->quantity;
         $item->available = $request->available;
+        $item->id_Category = $request->id_Category;
         $item->link = $request->link;
         $item->save();
         // Redireksi atau kirim pesan sukses

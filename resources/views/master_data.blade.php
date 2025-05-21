@@ -1,5 +1,5 @@
 @extends('layout.main')
-@section('title', 'Master Data')
+@section('title', 'master_data')
 @section('content')
     <link rel="stylesheet" href="https://cdn.datatables.net/2.3.0/css/dataTables.dataTables.css">
 <div class="container mt-4">

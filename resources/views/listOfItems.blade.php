@@ -1,5 +1,5 @@
 @extends('layout.main')
-@section('title', 'Master Data')
+@section('title', 'List of Items')
 @section('content')
 <link rel="stylesheet" href="https://cdn.datatables.net/2.3.0/css/dataTables.dataTables.css">
 <style>
@@ -97,6 +97,7 @@
               <option value="10">10</option>
               <option value="20">20</option>
               <option value="50">50</option>
+              <option value="100">100</option>
           </select>
         </form>
       </div>
@@ -115,9 +116,14 @@
               $title = $row['title'] ?? '';
               $description = $row['description'] ?? '';
               $quantity = $row['quantity'] ?? '';
+              $link = $row['link'] ?? '';
           @endphp
           <div class="card-horizontal mt-5" id="itemcard">
-              <img src="https://picsum.photos/400/200?  random={{ $loop->index }}" alt="{{ $name }}" class="card-img-left" />
+              @if($link== null)
+                <img src="https://picsum.photos/400/200?random={{ $loop->index }}" alt="{{ $name }}" class="card-img-left" />
+              @else
+                <img src="{{ $link }}" alt="{{ $name }}" class="card-img-left" />
+              @endif
               <div class="card-body"> 
                   <h4 class="card-title mb-3">{{ $name }}</h4>
                   <p class="card-text mb-4">{{ $description }}</p>
