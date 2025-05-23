@@ -12,6 +12,7 @@ class Users1 extends Model
         'name',
         'No_Telp',
         'email',
+        'password',
     ];
 
     protected $table = 'users1';

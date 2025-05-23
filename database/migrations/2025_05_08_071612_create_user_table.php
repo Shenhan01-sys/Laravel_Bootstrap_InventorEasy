@@ -18,6 +18,7 @@ class CreateUserTable extends Migration
             $table->string('name', 50);
             $table->string('No_Telp', 15);
             $table->string('email', 50);
+            $table->string('password', 255);
             $table->timestamps();
         });
     }

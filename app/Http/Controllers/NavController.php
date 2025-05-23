@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\Category;
+use App\Users1;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Hash;
 
 class NavController extends Controller
 {
@@ -78,5 +80,42 @@ class NavController extends Controller
 
         $categories = Category::all();
         return view('insertItems', compact('categories'));
+    }
+    
+    public function login(Request $request)
+    {
+        if($request->isMethod("post"))
+        {
+           /*$credentials = $request->only('email', 'password');
+
+            if (auth()->attempt($credentials))
+            {
+                return redirect()->intended('home')->with('success', 'Login successful');
+            } else 
+            {
+                return redirect()->back()->with('error', 'Invalid email or password');
+            }*/
+            $check = Users1::where('email', $request->email)->first();
+            if ($check) 
+            {
+                if (Hash::check($request->password, $check->password)) 
+                {
+                    return redirect()->intended('home')->with('success', 'Login successful');
+                } 
+                else 
+                {
+                    return redirect(to:'/')->with('error', 'Invalid email or password');
+                }
+            } 
+            else 
+            {
+                return redirect()->back()->with('error', 'Invalid email or password');
+            }
+        }
+        else
+        {
+            return view('login');
+        }
+        
     }
 }

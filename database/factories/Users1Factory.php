@@ -16,6 +16,7 @@ class Users1Factory extends Factory
             'name' => $this->faker->name,
             'No_Telp' => $this->faker->phoneNumber,
             'email' => $this->faker->unique()->safeEmail,
+            'password' => bcrypt('password'), // Password yang sudah di-hash
         ];
     }
 }
