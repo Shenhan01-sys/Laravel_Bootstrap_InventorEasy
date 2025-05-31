@@ -1,4 +1,6 @@
-<nav class="nav flex-column bg-dark vh-100 p-3" style="width: 250px;">
+<link href="blocks.css" rel="stylesheet" />
+<link href="delete.css" rel="stylesheet" />
+<nav class="nav flex-column vh-100 p-2" style="width: 280px; background-color: #485068;">
   <a class="nav-link text-white" href="#dashboard"><i class="bi bi-speedometer2 me-2"></i>Home</a>
   <a class="nav-link text-white" href="/about"><i class="bi bi-person-circle me-2"></i>About</a>
   <a class="nav-link text-white" href="/faq"><i class="bi bi-question-circle me-2"></i>FAQ</a>
@@ -10,8 +12,8 @@
   </a>
   <div class="collapse" id="itemsMenu">
     <nav class="nav flex-column ml-3">
-      <a class="nav-link text-white" href="#/master_data"><i class="bi bi-list-ul me-2"></i>List of Items</a>
-      <a class="nav-link text-white" href="/listOfItems"><i class="bi bi-card-list me-2"></i>Card items</a>
+      <a class="nav-link text-white" href="/master_data"><div id="list-items"></div>List of Items</a>
+      <a class="nav-link text-white" href="/listOfItems"><i class="bi bi-card-list me-1"></i>Card items</a>
       <a class="nav-link text-white" href="/insertItems"><i class="bi bi-plus-circle me-2"></i>Add Item</a>
       <a class="nav-link text-white" href="#settings"><i class="bi bi-pencil-square me-2"></i>Edit Item</a>
       <a class="nav-link text-white" href="#help"><i class="bi bi-trash me-2"></i>Delete Item</a>
@@ -49,15 +51,6 @@
   <a class="nav-link text-white" href="#help"><i class="bi bi-gear me-2"></i>Settings</a>
 </nav>
 
-<script>
-  $(document).ready(function () {
-    padding-left: 10px; /* Hilangkan padding agar tidak menambah jarak */
-  }
-
-</style>
-
-</head>
-<body>
 <!-- Navbar toggle button for small screens -->
 <nav class="navbar navbar-dark bg-dark fixed-top d-lg-none">
   <div class="container-fluid">
@@ -162,8 +155,4 @@
   loadHTML('edit.html', 'edit-student');
   loadHTML('users.html', 'list-students');
   loadHTML('BlockIcon.html', 'list-items');
-  loadHTML('BlockIcon.html', 'card-items');
 </script>
-
-</body>
-</html>

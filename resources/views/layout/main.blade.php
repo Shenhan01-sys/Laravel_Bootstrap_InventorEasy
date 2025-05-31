@@ -15,7 +15,7 @@
     <div class='container-fluid'>
         <!--Baris 1-->
         <div class="row">
-            <div class="col-md-12 py-3" style="background-color: #92a8e9;">
+            <div class="col-md-12 py-3" style="background-color: #485068;">
                 <div class="dropdown float-right">
                     <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" 
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -42,7 +42,7 @@
         <!-- Baris 2 -->
         <div class="row">
             <!-- Sidebar -->
-            <div class="col-md-3 vh-100 border" style="background-color: #fdfdfd;">
+            <div class="col-md-2 vh-100 border" style="background-color: #fdfdfd;">
                 @include('Navbar/sidebar')
             </div>
 

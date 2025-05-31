@@ -95,12 +95,12 @@ class NavController extends Controller
             {
                 return redirect()->back()->with('error', 'Invalid email or password');
             }*/
-            $check = Users1::where('email', $request->email)->first();
+            $check = Users1::where('email', $request->email_user)->first();
             if ($check) 
             {
-                if (Hash::check($request->password, $check->password)) 
+                if (Hash::check($request->password_user, $check->password)) 
                 {
-                    return redirect()->intended('home')->with('success', 'Login successful');
+                    return redirect(to:'/home')->with('success', 'Login successful');
                 } 
                 else 
                 {
@@ -114,7 +114,7 @@ class NavController extends Controller
         }
         else
         {
-            return view('login');
+            return view('login_temp');
         }
         
     }
