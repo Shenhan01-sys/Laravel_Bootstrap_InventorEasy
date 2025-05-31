@@ -16,9 +16,10 @@ class CreateLoansTable extends Migration
         Schema::create('loans', function (Blueprint $table) {
             $table->bigIncrements('id_Loan');
             $table->unsignedBigInteger('id_Item');
-            $table->integer('nim');
+            $table->unsignedBigInteger('id_User');
+            // Removed 'nim' column as it is replaced by 'id_User'
             $table->foreign('id_Item')->references('id_Item')->on('items')->onDelete('cascade');
-            $table->foreign('nim')->references('nim')->on('users1')->onDelete('cascade');
+            $table->foreign('id_User')->references('id_User')->on('users1')->onDelete('cascade');
             $table->date('loan_date');
             $table->date('return_date')->nullable();
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');

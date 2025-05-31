@@ -12,11 +12,14 @@ class Users1Factory extends Factory
     public function definition()
     {
         return [
-            'nim' => $this->faker->unique()->numberBetween(10000000, 99999999),
-            'name' => $this->faker->name,
-            'No_Telp' => $this->faker->phoneNumber,
+            'id_User' => $this->faker->unique()->randomNumber(8, true), // ID unik untuk setiap pengguna
             'email' => $this->faker->unique()->safeEmail,
-            'password' => bcrypt('password'), // Password yang sudah di-hash
+            'name' => $this->faker->name,
+            'password' => $this->faker->password(8, 20), // Password acak
+            'kota' => $this->faker->city,
+            'alamat' => $this->faker->address,
+            'foto' => $this->faker->imageUrl(640, 480, 'people', true, 'Faker'),
+             // Password yang sudah di-hash
         ];
     }
 }

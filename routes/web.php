@@ -20,7 +20,7 @@ use App\Http\Controllers\itemController;
 //});
 
 
-Route::get('/home', [NavController::class, 'home']);
+Route::get('/', [NavController::class, 'home']);
 Route::get('/master_data', [itemController::class, 'index_master_data']);
 Route::get('/about', [NavController::class, 'about']);
 Route::get('/faq', [NavController::class, 'faq']);
@@ -28,5 +28,6 @@ Route::get('/welcome', [NavController::class, 'welcome']);
 Route::get('/listOfItems', [itemController::class, 'index']);
 Route::get('/insertItems', [NavController::class, 'insertItems']);
 Route::post('/insertItems', [itemController::class, 'insertItems'])->name('insert_Item');
-Route::get('/', [NavController::class, 'login']);
-Route::post('/', [NavController::class, 'login'])->name('login');
+
+//Route::get('/', [NavController::class, 'login']);
+//Route::post('/', [NavController::class, 'login'])->name('login');

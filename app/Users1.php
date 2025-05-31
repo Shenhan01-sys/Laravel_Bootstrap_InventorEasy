@@ -8,14 +8,16 @@ class Users1 extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'nim',
-        'name',
-        'No_Telp',
+        'id_User',
         'email',
+        'name',
         'password',
+        'alamat',
+        'kota',
+        'foto',
     ];
 
     protected $table = 'users1';
-    protected $primaryKey = 'nim';
+    protected $primaryKey = 'id_User';
     public $timestamps = false;
 }

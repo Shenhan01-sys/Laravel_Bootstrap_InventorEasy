@@ -21,6 +21,7 @@ class CreateItemsTable extends Migration
             $table->string('description', 255)->nullable();
             $table->integer('quantity');
             $table->boolean('available')->default(true);
+            $table->string('link')->nullable();
             $table->timestamps();
         });
     }

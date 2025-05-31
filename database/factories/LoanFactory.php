@@ -13,7 +13,7 @@ class LoanFactory extends Factory
     {
         return [
             'id_Item' => \App\Models\Item::inRandomOrder()->first()->id_Item,
-            'nim' => \App\Users1::inRandomOrder()->first()->nim,
+            'id_User' => \App\Users1::inRandomOrder()->first()->id_User,
             'loan_date' => $this->faker->date(),
             'return_date' => $this->faker->date(),
             'status' => 'pending',

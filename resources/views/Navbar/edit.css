@@ -1,0 +1,102 @@
+/* Container styles */
+.sliders-vertical-container {
+  cursor: pointer;
+  user-select: none;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  background-color: transparent;
+  stroke: #adb5bd; /* pale color */
+  transition: stroke 0.3s ease;
+  color: inherit;
+}
+
+/* SVG styles */
+.sliders-vertical-svg {
+  width: 28px;
+  height: 28px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke 0.3s ease;
+}
+
+/* Lines initial state with adjusted stroke lengths */
+.sliders-vertical-line:nth-child(1) {
+  stroke-dasharray: 7;
+  stroke-dashoffset: 7;
+  opacity: 0.3;
+  transition: stroke-dashoffset 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+.sliders-vertical-line:nth-child(2) {
+  stroke-dasharray: 7;
+  stroke-dashoffset: 7;
+  opacity: 0.3;
+  transition: stroke-dashoffset 0.5s ease-in-out 0.1s, opacity 0.5s ease-in-out 0.1s;
+}
+.sliders-vertical-line:nth-child(3) {
+  stroke-dasharray: 9;
+  stroke-dashoffset: 9;
+  opacity: 0.3;
+  transition: stroke-dashoffset 0.5s ease-in-out 0.2s, opacity 0.5s ease-in-out 0.2s;
+}
+.sliders-vertical-line:nth-child(4) {
+  stroke-dasharray: 5;
+  stroke-dashoffset: 5;
+  opacity: 0.3;
+  transition: stroke-dashoffset 0.5s ease-in-out 0.3s, opacity 0.5s ease-in-out 0.3s;
+}
+.sliders-vertical-line:nth-child(5) {
+  stroke-dasharray: 5;
+  stroke-dashoffset: 5;
+  opacity: 0.3;
+  transition: stroke-dashoffset 0.5s ease-in-out 0.4s, opacity 0.5s ease-in-out 0.4s;
+}
+.sliders-vertical-line:nth-child(6) {
+  stroke-dasharray: 9;
+  stroke-dashoffset: 9;
+  opacity: 0.3;
+  transition: stroke-dashoffset 0.5s ease-in-out 0.5s, opacity 0.5s ease-in-out 0.5s;
+}
+.sliders-vertical-line:nth-child(7) {
+  stroke-dasharray: 4;
+  stroke-dashoffset: 4;
+  opacity: 0.3;
+  transition: stroke-dashoffset 0.5s ease-in-out 0.6s, opacity 0.5s ease-in-out 0.6s;
+}
+.sliders-vertical-line:nth-child(8) {
+  stroke-dasharray: 4;
+  stroke-dashoffset: 4;
+  opacity: 0.3;
+  transition: stroke-dashoffset 0.5s ease-in-out 0.7s, opacity 0.5s ease-in-out 0.7s;
+}
+.sliders-vertical-line:nth-child(9) {
+  stroke-dasharray: 4;
+  stroke-dashoffset: 4;
+  opacity: 0.3;
+  transition: stroke-dashoffset 0.5s ease-in-out 0.8s, opacity 0.5s ease-in-out 0.8s;
+}
+
+/* Hover animation */
+.sliders-vertical-container:hover .sliders-vertical-line {
+  stroke-dashoffset: 0;
+  opacity: 1;
+}
+
+/* Hover and focus styles for nav-link containing sliders-vertical-container */
+.nav-link:hover .sliders-vertical-container,
+.nav-link:focus .sliders-vertical-container,
+.nav-link.active .sliders-vertical-container {
+  background-color: transparent;
+}
+
+.nav-link:hover .sliders-vertical-container svg,
+.nav-link:focus .sliders-vertical-container svg,
+.nav-link.active .sliders-vertical-container svg {
+  stroke: #fff; /* white icon stroke on hover/focus */
+}

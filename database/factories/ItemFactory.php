@@ -23,7 +23,7 @@ class ItemFactory extends Factory
             'description' => $faker->sentence(),
             'quantity' => $faker->numberBetween(1, 10),
             'available' => $faker->boolean(),
-            'link' => "",
+            //'link' => "",
             'created_at' => now(),
             'updated_at' => now(),
         ];

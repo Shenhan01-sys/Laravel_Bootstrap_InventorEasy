@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Users Icon with Animation</title>
+<style>
+  .users-icon {
+    cursor: pointer;
+    user-select: none;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent; /* dark background to show white stroke */
+    width: 56px;
+    height: 56px;
+  }
+
+  .users-icon svg {
+    width: 28px;
+    height: 28px;
+    fill: none;
+    stroke: #ffffff;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .users-icon path,
+  .users-icon circle {
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  }
+
+  .users-icon:hover .path-animate-1,
+  .users-icon:hover .path-animate-2 {
+    animation: slideIn 0.3s forwards;
+    animation-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  }
+
+  @keyframes slideIn {
+    0% {
+      transform: translateX(-6px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="users-icon" tabindex="0" aria-label="Users icon with animation">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" >
+      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+      <circle cx="9" cy="7" r="4" />
+      <path class="path-animate-1" d="M22 21v-2a4 4 0 0 0-3-3.87" />
+      <path class="path-animate-2" d="M16 3.13a4 4 0 0 1 0 7.75" />
+    </svg>
+  </div>
+</body>
+</html>

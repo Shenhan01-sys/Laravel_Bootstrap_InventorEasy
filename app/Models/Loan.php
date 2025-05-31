@@ -11,7 +11,7 @@ class Loan extends Model
 
         protected $fillable = [
         'id_Item',
-        'nim',
+        'id_User',
         'loan_date',
         'return_date',
         'status',

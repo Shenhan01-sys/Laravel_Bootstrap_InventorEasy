@@ -43,7 +43,7 @@
         <div class="row">
             <!-- Sidebar -->
             <div class="col-md-3 vh-100 border" style="background-color: #fdfdfd;">
-                @include('nav')
+                @include('Navbar/sidebar')
             </div>
 
             <!-- Konten -->

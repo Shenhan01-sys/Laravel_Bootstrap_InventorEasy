@@ -1,0 +1,52 @@
+/* Container styles */
+.delete-container {
+  cursor: pointer;
+  user-select: none;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px; /* same as blocks */
+  height: 56px;
+}
+
+/* SVG base styles */
+.delete-container svg {
+  width: 28px;
+  height: 28px;
+  stroke: #ffffff;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  transition: stroke 0.3s ease;
+}
+
+/* Lid group animation */
+.delete-lid {
+  transform-origin: center;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Body path */
+.delete-body {
+  transition: d 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Lines */
+.delete-line {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Hover and focus animations */
+.delete-container:hover .delete-lid {
+  transform: translateY(-1.1px);
+}
+
+.delete-container:hover .delete-body {
+  d: path("M19 9v12c0 1-1 2-2 2H7c-1 0-2-1-2-2V9");
+}
+
+.delete-container:hover .delete-line {
+  transform: translateY(0.5px);
+}

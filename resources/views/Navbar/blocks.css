@@ -1,0 +1,81 @@
+.block-container {
+  cursor: pointer;
+  user-select: none;
+  padding: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px; /* 28 * 2 for better visibility */
+  height: 56px;
+  background-color: transparent;
+  stroke: #adb5bd; /* pale color */
+  transition: stroke 0.3s ease;
+  box-sizing: border-box;
+}
+
+svg {
+  width: 40px;
+  height: 40px;
+  display: block;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  stroke: inherit;
+  transition: stroke 0.3s ease;
+}
+
+.block-rect {
+  transform-origin: center;
+  transition: transform 0.5s ease-in-out;
+}
+
+.block-path {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  opacity: 0.3;
+  transition: stroke-dashoffset 0.8s ease-in-out, opacity 0.8s ease-in-out;
+}
+
+/* Hover and focus styles for nav-link containing block-container */
+.nav-link {
+  color: #adb5bd; /* pale text color */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link:focus,
+.nav-link.active {
+  background-color: #6c757d; /* gray background */
+  color: #fff; /* white text */
+}
+
+.nav-link:hover .block-container svg,
+.nav-link:focus .block-container svg,
+.nav-link.active .block-container svg {
+  stroke: #fff; /* white icon stroke on hover/focus */
+}
+
+.nav-link:hover .block-container,
+.nav-link:focus .block-container,
+.nav-link.active .block-container {
+  background-color: transparent;
+}
+
+.nav-link:hover .block-rect,
+.nav-link:focus .block-rect,
+.nav-link.active .block-rect {
+  transform: scale(1.1) rotate(5deg);
+  transition: transform 0.5s ease-in-out;
+}
+
+.nav-link:hover .block-path,
+.nav-link:focus .block-path,
+.nav-link.active .block-path {
+  stroke-dashoffset: 0;
+  opacity: 1;
+  transition: stroke-dashoffset 0.8s ease-in-out, opacity 0.8s ease-in-out;
+}
