@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Login</title>
+    <title>Regist InventorEasy</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- SweetAlert2 CSS -->
@@ -20,7 +20,7 @@
         body {
             font-family: 'Inter', sans-serif;
             min-height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #58b8a0 0%, #1ab668 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -87,7 +87,7 @@
             backdrop-filter: blur(20px);
             border-radius: 24px;
             padding: 48px 40px;
-            width: 420px;
+            width: 900px;
             max-width: 90vw;
             box-shadow: 
                 0 25px 50px rgba(0, 0, 0, 0.15),
@@ -114,7 +114,7 @@
         .logo {
             width: 180px;
             height: 60px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #66eaa1, #6ca24b);
             border-radius: 16px;
             margin: 0 auto 20px;
             display: flex;
@@ -141,11 +141,11 @@
 
         /* Form */
         .form {
-            space-y: 24px;
+            space-y: 30px;
         }
 
         .form-group {
-            margin-bottom: 24px;
+            margin-bottom: 15px;
         }
 
         .form-label {
@@ -170,7 +170,7 @@
         }
 
         .form-input:focus {
-            border-color: #66eaa6;
+            border-color: #667eea;
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
 
@@ -218,10 +218,10 @@
         }
 
         /* Button */
-        .login-button {
+        .signup-button {
             width: 100%;
             height: 52px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #66eaaa 0%, #7ab724 100%);
             border: none;
             border-radius: 12px;
             color: white;
@@ -233,12 +233,12 @@
             margin-bottom: 24px;
         }
 
-        .login-button:hover {
+        .signup-button:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 20px rgba(102, 126, 234, 0.5);
         }
 
-        .login-button:active {
+        .signup-button:active {
             transform: translateY(0);
         }
 
@@ -332,20 +332,47 @@
     <div class="login-container">
         <div class="header">
             <div class="logo">InventorEasy</div>
-            <h1 class="title">Welcome back</h1>
-            <p class="subtitle">Sign in to your account</p>
+            <h1 class="title">Registration</h1>
+            <p class="subtitle">Create your account</p>
         </div>
 
-        <form action="{{ route('login') }}" class="form" method="POST" onsubmit="return validateEmail()">
+        <form action="{{ route('register') }}" class="form" method="POST" onsubmit="return validateEmail_Pass()">
             @csrf
-            <div class="form-group">
-                <label class="form-label">Email address</label>
-                <input type="text" id="email_user" name="email_user" class="form-input" placeholder="Enter your email" required>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label">Email address</label>
+                        <input type="text" id="email_user" name="email_user" class="form-input" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Username</label>
+                        <input type="text" id="name" name="name" class="form-input" placeholder="Enter your username" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <!-- Empty column to align password fields to the right -->
+                </div>
             </div>
 
-            <div class="form-group">
-                <label class="form-label">Password</label>
-                <input type="password" id="password_user" name="password_user" class="form-input" placeholder="Enter your password" required>
+            <div class="row">
+                <div class="col-md-6">
+                    <!-- Empty column to align password fields to the right -->
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <input type="password" id="password_user" name="password_user" class="form-input" placeholder="Enter your password" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Confirmation-Password</label>
+                        <input type="password" id="password_user_confirm" name="password_user_confirm" class="form-input" placeholder="Enter your password" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Upload your image</label>
+                        <input type="file" id="image"o name="image" class="form-input" onchange="previewImage(this)" required>
+                    </div>
+                </div>
             </div>
 
             <div class="form-options">
@@ -353,20 +380,59 @@
                     <input type="checkbox" id="remember" class="checkbox">
                     <label for="remember" class="checkbox-label">Remember me</label>
                 </div>
+
                 <a href="#" class="forgot-link">Forgot password?</a>
             </div>
 
-            <button type="submit" class="login-button">Sign in</button>
+            <button type="submit" class="signup-button">Sign up</button>
         </form>
+
+        <div class="div1 mt-2 ml-5" id="div1">
+            <img id="previewImg" src="{{ asset('images/upload_icon.png') }}"
+                style="
+                    max-width: 100%; 
+                    max-height: 100%; 
+                    border-radius: 10px; 
+                    display: flex; 
+                    align-items: center; 
+                    justify-content: center; 
+                    padding: 10px;
+                    left: 12%;
+                    top: 9%;
+                    position: relative;">
+        </div>
         <script>
-            function validateEmail() {
+            function previewImage(input) {
+                const imageUrl = input.value;
+                const previewImg = document.getElementById('previewImg');
+                if (imageUrl) {
+                    previewImg.src = imageUrl;
+                    previewImg.style.display = 'block';
+                    previewImg.style.left = '17%';
+                    previewImg.style.top = '28%';
+                } else {
+                    previewImg.style.display = 'none';
+                }
+            }
+
+            function validateEmail_Pass() {
                 const email = document.getElementById("email_user").value;
                 const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                const password = document.getElementById("password_user").value;
+                const confirmPassword = document.getElementById("password_user_confirm").value;
                 if (!pattern.test(email)) 
                 {
                     Swal.fire({
                         icon: 'error',
                         title: 'Format email salah',
+                        showConfirmButton: true,
+                    });
+                    return false;
+                }
+                if (password !== confirmPassword) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Password tidak cocok',
                         showConfirmButton: true,
                     });
                     return false;
@@ -403,10 +469,6 @@
                 <span><i class="bi bi-facebook"></i></span>
                 Facebook
             </a>
-        </div>
-
-        <div class="footer">
-            Don't have an account? <a href="/register">Sign up</a>
         </div>
     </div>
 </body>

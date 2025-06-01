@@ -36,6 +36,31 @@ class NavController extends Controller
         return view('welcome');
     }
 
+    public function register(Request $request)
+    {
+        if ($request->isMethod('post'))
+        {
+            $validatedData = $request->validate([
+                'name_user' => 'required|string|max:255',
+                'email_user' => 'required|string|email|max:255|unique:users1,email',
+                'password_user' => 'required|string|min:8|confirmed',
+            ]);
+
+            try {
+                $user = new Users1();
+                $user->name_user = $validatedData['name_user'];
+                $user->email = $validatedData['email_user'];
+                $user->password = Hash::make($validatedData['password_user']);
+                $user->save();
+
+                return redirect()->back()->with('success', 'Registration successful.');
+            } catch (\Exception $e) {
+                return redirect()->back()->with('error', 'Failed to register: ' . $e->getMessage());
+            }
+        }
+        return view('regist');
+    }
+
     public function listOfItems()
     {
         $items = Item::all();

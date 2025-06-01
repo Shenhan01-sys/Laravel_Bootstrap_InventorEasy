@@ -29,5 +29,6 @@ Route::get('/listOfItems', [itemController::class, 'index']);
 Route::get('/insertItems', [NavController::class, 'insertItems']);
 Route::post('/insertItems', [itemController::class, 'insertItems'])->name('insert_Item');
 
+Route::get('/register', [NavController::class, 'register'])->name('register');
 Route::get('/', [NavController::class, 'login']);
 Route::post('/', [NavController::class, 'login'])->name('login');
