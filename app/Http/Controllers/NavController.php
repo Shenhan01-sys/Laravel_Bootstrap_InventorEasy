@@ -36,25 +36,43 @@ class NavController extends Controller
         return view('welcome');
     }
 
-    public function register(Request $request)
+public function register(Request $request)
     {
         if ($request->isMethod('post'))
         {
             $validatedData = $request->validate([
-                'name_user' => 'required|string|max:255',
+                'name' => 'required|string|max:255',
                 'email_user' => 'required|string|email|max:255|unique:users1,email',
                 'password_user' => 'required|string|min:8|confirmed',
+                'address' => 'required|string|max:255',
+                'city' => 'required|string|max:255',
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             ]);
 
             try {
                 $user = new Users1();
-                $user->name_user = $validatedData['name_user'];
+                $call_id_user = Users1::orderBy('id_User', 'desc')->first();
+                $user->id_User = $call_id_user ? $call_id_user->id_User + 1 : 1; // Handle case when no users exist
+                $user->name = $validatedData['name'];
                 $user->email = $validatedData['email_user'];
+                $user->alamat = $validatedData['address'];
+                $user->kota = $validatedData['city'];
+
+                if ($request->hasFile('image')) {
+                    $image = $request->file('image');
+                    $imageName = time() . '.' . $image->getClientOriginalExtension();
+                    $image->move(public_path('images'), $imageName);
+                    $user->foto = $imageName;
+                } else {
+                    $user->foto = 'default.jpg'; // Assuming a default photo, adjust as needed
+                }
+
                 $user->password = Hash::make($validatedData['password_user']);
                 $user->save();
 
                 return redirect()->back()->with('success', 'Registration successful.');
-            } catch (\Exception $e) {
+            } 
+            catch (\Exception $e) {
                 return redirect()->back()->with('error', 'Failed to register: ' . $e->getMessage());
             }
         }
