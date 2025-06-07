@@ -1,5 +1,5 @@
-    @extends('layout.main')
-@section('title', 'Master Data')
+@extends('layout.main')
+@section('title', 'Edit Item')
 @section('content')
 <style>
     .parent {
@@ -18,6 +18,22 @@
         grid-row-start: 1;
         background-color: #d4ddff;
         border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        height: 300px;
+        min-height: 300px;
+        width: 100%;
+        padding: 10px;
+    }
+    #previewImg {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        border-radius: 10px;
+        display: block;
+        margin: auto;
     }
 
     .div2 {
@@ -54,17 +70,14 @@
     }
 </style>
 <div class="parent mt-4">
-    <div class="div1 mt-2 ml-5" id="div1" style="background-color: #7b68ee; display: flex; justify-content: center; align-items: center; padding: 20px;">
-        <img id="previewImg" src="{{ asset('images/upload_icon.png') }}"
+    <div class="div1 mt-2 ml-5" id="div1">
+        <img id="previewImg" src="{{ $item->link ?? asset('images/upload_icon.png') }}"
             style="
                 max-width: 100%; 
                 max-height: 100%; 
-                max-width: 300px;
-                max-height: 300px;
                 border-radius: 10px; 
-                display: block; 
-                padding: 10px;
-                object-fit: contain;">
+                display: block;
+                margin: auto;">
     </div>
     <script>
         function previewImage(input) {
@@ -79,39 +92,46 @@
                 previewImg.style.display = 'none';
             }
         }
+        document.addEventListener('DOMContentLoaded', function() {
+            const input = document.getElementById('link');
+            if (input && input.value) {
+                previewImage(input);
+            }
+        });
     </script>
     <div class="div2 rounded">
-            <form method="POST" action="{{ route('insert_Item') }}">
+            <form method="POST" action="{{ route('updateItem', ['id' => $item->id_Item]) }}">
                 @csrf
+                @method('PUT')
                 <fieldset class="border border-primary rounded" style="font-size: 20px;">
-                    <legend>New Item</legend>
+                    <legend>Edit Item</legend>
                     <label for="name_Item">Item name:</label>
-                    <input id="name_Item" type="text" name="name_Item" placeholder="Item Name" required>
+                    <input id="name_Item" type="text" name="name_Item" placeholder="Item Name" value="{{ old('name_Item', $item->name_Item) }}" required>
                     <label for="description">Description:</label>
-                    <input id="description" type="text" name="description" placeholder="Item Description" required>
+                    <input id="description" type="text" name="description" placeholder="Item Description" value="{{ old('description', $item->description) }}" required>
                     <label for="quantity">Quantity:</label>
-                    <input id="quantity" type="number" name="quantity" placeholder="Item Quantity" required>
+                    <input id="quantity" type="number" name="quantity" placeholder="Item Quantity" value="{{ old('quantity', $item->quantity) }}" required>
                     <label for="link">Image:</label>
-                    <input id="link" type="text" name="link" placeholder="Item Image" onchange="previewImage(this)" required>
+                    <input id="link" type="text" name="link" placeholder="Item Image" value="{{ old('link', $item->link) }}" onchange="previewImage(this)" required>
                 </fieldset>
                 <fieldset class="border border-primary rounded" style="font-size: 20px;">
                     <legend>Choose Category</legend>
                     <label for="category">Category:</label>
                     <select id="id_Category" name="id_Category" required>
                         @foreach($categories as $category)
-                            <option value="{{ $category->id_Category }}">{{ $category->name_category }}</option>
+                            <option value="{{ $category->id_Category }}" {{ (old('id_Category', $item->id_Category) == $category->id_Category) ? 'selected' : '' }}>{{ $category->name_category }}</option>
                         @endforeach
                     </select>
                 </fieldset>
                 <fieldset class="border border-primary rounded" style="font-size: 20px;">
-                    <legend>Availabel Now?</legend>
+                    <legend>Available Now?</legend>
                     <label for="available">Available:</label>
                     <select id="available" name="available" required>
-                        <option value="1">Yes</option>
-                        <option value="0">No</option>
+                        <option value="1" {{ (old('available', $item->available) == 1) ? 'selected' : '' }}>Yes</option>
+                        <option value="0" {{ (old('available', $item->available) == 0) ? 'selected' : '' }}>No</option>
                     </select>
                 </fieldset>
-                <input type="submit" class="btn btn-primary mt-4 mb-4" value="Insert Item">
+                <input type="submit" class="btn btn-primary mt-4 mb-4" value="Update Item">
                 <input type="reset" class="btn btn-danger mt-4 mb-4" value="Reset">
             </form>
 

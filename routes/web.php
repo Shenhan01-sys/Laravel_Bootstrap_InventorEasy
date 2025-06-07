@@ -33,3 +33,7 @@ Route::get('/register', [NavController::class, 'register']);
 Route::post('/register', [NavController::class, 'register'])->name('register');
 Route::get('/', [NavController::class, 'login']);
 Route::post('/', [NavController::class, 'login'])->name('login');
+Route::get('/editItem/{id}', [itemController::class, 'editItem'])->name('editItems');
+Route::put('/editItem/{id}', [itemController::class, 'updateItem'])->name('updateItem');
+
+Route::post('/deleteItem/{id}', [itemController::class, 'deleteItem'])->name('deleteItem');
